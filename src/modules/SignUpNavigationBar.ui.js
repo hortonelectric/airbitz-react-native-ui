@@ -1,18 +1,32 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
-
 import PasswordValidation from './Password/PasswordValidation/PasswordValidation.ui'
 import t from "../lib/LocaleStrings"
 class NavigationBar extends Component {
 
-  handleOnPress = () => {
-    this.props.dispatch(this.props.navigation.pop())  
+  constructor(props) {
+    super(props);
+    this._handleBackPress = this._handleBackPress.bind(this);
+    this._checkPasswordStateOption = this._checkPasswordStateOption.bind(this);
+ 
+    this._checkPasswordStateStyle = this._checkPasswordStateStyle.bind(this);
   }
 
-  checkPasswordStateOption = () => {
+  static route = {
+    userCacheOpen: false,
+    navigationBar: {
+      title: t('app_name')
+    }
+  };
 
-    if(this.props.navigation === "createPassword" && this.props.passwordState){
+  _handleBackPress = () => {
+    this.props.navigator.pop()
+  }
+
+  _checkPasswordStateOption = () => {
+
+    if(this.props.navigator.getCurrentRoute().key  === "createPassword" && this.props.passwordState){
       return (
         <PasswordValidation />
       )  
@@ -22,9 +36,9 @@ class NavigationBar extends Component {
 
   }
 
-  checkPasswordStateStyle = () => {
+  _checkPasswordStateStyle = () => {
 
-    if(this.props.navigation === "createPassword" && this.props.passwordState){
+    if(this.props.navigator.getCurrentRoute().key === "createPassword" && this.props.passwordState){
       return {height: 200}    
     }else{
       return null  
@@ -34,16 +48,16 @@ class NavigationBar extends Component {
   
   render() {
     return (
-      <View style={[ style.container, this.checkPasswordStateStyle() ]}>
+      <View style={[ style.container, this._checkPasswordStateStyle() ]}>
         <View style={style.navigationBarContainer}>
           <View style={style.navigationContainer}>
-            <TouchableHighlight onPress={this.handleOnPress}>
+            <TouchableHighlight onPress={_handleOnPress}>
               <Text style={style.text}>{t('string_back')}</Text>
             </TouchableHighlight>
             <Text style={[ style.text, style.title ]}>{this.props.navigation}</Text>
             <Text style={style.text}>     </Text>
           </View>
-          { this.checkPasswordStateOption() }
+          { this._checkPasswordStateOption() }
         </View>
       </View>
     );
@@ -87,8 +101,6 @@ const style = StyleSheet.create({
 });
 
 export default connect( state => ({
-
-  route      : state.route,
   passwordState  : state.password.inputState
 
 }) )(NavigationBar)
