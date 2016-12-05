@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TextInput } from 'react-native'
 
+import { View, Text, TextInput } from 'react-native'
+import {Container, Content } from 'native-base';
 import { changeUsernameValue } from './Username.action'
 import { checkUsername } from './Username.middleware'
 
-import Container from '../SignUp.ui'
 
-import style from './style'
+import style from './Username.style'
 import t from '../../lib/LocaleStrings'
 
 class UsernameComponent extends Component {

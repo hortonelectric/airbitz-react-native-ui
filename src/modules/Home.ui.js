@@ -28,7 +28,7 @@ class HomeComponent extends Component {
   };
 
   _openSignUp() {
-    this.props.navigator.push(Router.getRoute('signup'));    
+    this.props.navigator.push(Router.getRoute('signup',{screen: "username"}));    
   }
 
   _openCrash() {

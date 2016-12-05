@@ -51,7 +51,7 @@ class NavigationBar extends Component {
       <View style={[ style.container, this._checkPasswordStateStyle() ]}>
         <View style={style.navigationBarContainer}>
           <View style={style.navigationContainer}>
-            <TouchableHighlight onPress={_handleOnPress}>
+            <TouchableHighlight onPress={this._handleBackPress}>
               <Text style={style.text}>{t('string_back')}</Text>
             </TouchableHighlight>
             <Text style={[ style.text, style.title ]}>{this.props.navigation}</Text>

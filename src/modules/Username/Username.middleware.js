@@ -1,10 +1,12 @@
 import async_auto from 'async/auto'
 
 import abcContext from '../../lib/abcContext'
+import { NavigationActions } from '@exponent/ex-navigation'
 
-import { openErrorModal } from '../../ErrorModal/ErrorModal.action'
-import { openLoading, closeLoading } from '../../Loader/Loader.action'
 
+import { openErrorModal } from '../ErrorModal/ErrorModal.action'
+import { openLoading, closeLoading } from '../Loader/Loader.action'
+import { Store, Router } from "../../app"
 import t from '../../lib/LocaleStrings'
 export const checkUsername = username => {
   return dispatch => {
@@ -39,7 +41,9 @@ export const checkUsername = username => {
         dispatch(openErrorModal(err))
       }
       if (!err) {
-        dispatch(openErrorModal('WOO'))
+        let navigatorUID = Store.getState().navigation.currentNavigatorUID;
+        Store.dispatch(NavigationActions.push(navigatorUID, Router.getRoute('signup', {screen: "pin"})))
+
       }
     })
   }

@@ -5,7 +5,7 @@ import { AppRegistry, View, StatusBar } from 'react-native'
 import configureStore from './lib/configureStore'
 import t from './lib/LocaleStrings'
 
-const Store = configureStore()
+export const Store = configureStore()
 
 /**
  * If you're using Exponent, uncomment the line below to import Exponent
