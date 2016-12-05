@@ -6,6 +6,8 @@ import t from '../lib/LocaleStrings'
 import { Router } from "../app"
 import appTheme from '../../Themes/appTheme'
 
+import Loader from './Loader/Loader.ui'
+import ErrorModal from './ErrorModal/ErrorModal.ui'
 import Login from './Login/Login.ui'
 import { openLogin } from './Login/Login.action'
 
@@ -76,13 +78,12 @@ class HomeComponent extends Component {
                 accessibilityLabel={t('fragment_landing_signup_button')}>
                 {t('fragment_landing_signup_button')}
               </Button>            
-              <Button
-                onPress={this._openCrash}>
-                CRASH
-              </Button>          
+              <Button onPress={this._openCrash}> CRASH </Button>          
             </View>
           </Image>
         </Content>
+	    <Loader />
+	    <ErrorModal />
       </Container>
     )
   }
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#FFFFFF'
   },
+
   backgroundImage: {
     justifyContent: 'flex-start',
     alignItems: 'center',
