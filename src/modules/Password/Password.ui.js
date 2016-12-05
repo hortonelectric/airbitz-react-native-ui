@@ -23,6 +23,7 @@ import {
 
 class Password extends Component {
   
+
   handleSubmit  = () => {
     this.props.dispatch(
       checkPassword(

@@ -39,8 +39,7 @@ export const checkUsername = username => {
         dispatch(openErrorModal(err))
       }
       if (!err) {
-
-        dispatch(openErrorModal("WOO"))
+        dispatch(openErrorModal('WOO'))
       }
     })
   }

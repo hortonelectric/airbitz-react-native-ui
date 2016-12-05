@@ -16,6 +16,7 @@ const Store = configureStore()
 
 import {
   createRouter,
+  NavigationContext,
   NavigationProvider,
   StackNavigation
 } from '@exponent/ex-navigation'
@@ -27,12 +28,17 @@ import {
   */
 
 import Home from './modules/Home.ui'
+import SignUp from './modules/SignUp.ui'
 import Main from './modules/Main/Main.ui'
 export const Router = createRouter(() => ({
   home: () => Home,
+  signup: () => SignUp,
   main: () => Main
 }))
-
+const navigationContext = new NavigationContext({
+  router: Router,
+  store: Store,
+})
 class App extends Component {
   render () {
     /**
@@ -50,7 +56,7 @@ class App extends Component {
       */
     return (
       <View style={{flex: 1}}>
-        <NavigationProvider router={Router}>
+        <NavigationProvider context={navigationContext}>
           <StatusBar barStyle='default' />
           <ReduxProvider store={Store}>
             <StackNavigation

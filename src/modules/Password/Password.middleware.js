@@ -1,5 +1,4 @@
 
-
 import { openErrorModal } from '../../ErrorModal/ErrorModal.action'
 import t from '../../lib/LocaleStrings'
 export const checkPassword = (password, passwordRepeat, validation) => {
@@ -13,7 +12,7 @@ export const checkPassword = (password, passwordRepeat, validation) => {
     }
 
     if (validation.upperCaseChar && validation.lowerCaseChar && validation.number && validation.characterLength && password === passwordRepeat) {
-      return dispatch(openErrorModal("YAY!"))
+      return dispatch(openErrorModal('YAY!'))
 
       // return dispatch(navigatorPush())
     }

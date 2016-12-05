@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { View, Text, Image, StyleSheet } from 'react-native'
 import {Container, Content, Button, Icon} from 'native-base';
 import t from '../lib/LocaleStrings'
-import {Router} from "../app"
+import { Router } from "../app"
 import appTheme from '../../Themes/appTheme'
 
 import Login from './Login/Login.ui'
@@ -13,7 +13,7 @@ class HomeComponent extends Component {
 
   constructor(props) {
     super(props);
-    this._openSignup = this._openSignup.bind(this);
+    this._openSignUp = this._openSignUp.bind(this);
     this._openCrash = this._openCrash.bind(this);
     this._openUserCache = this._openUserCache.bind(this);
   }
@@ -25,7 +25,7 @@ class HomeComponent extends Component {
     }
   };
 
-  _openSignup() {
+  _openSignUp() {
     this.props.navigator.push(Router.getRoute('signup'));    
   }
 

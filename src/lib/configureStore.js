@@ -1,5 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable no-undef */
+
+import { createNavigationEnabledStore } from '@exponent/ex-navigation';
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './rootReducer'
 import thunk from 'redux-thunk'
@@ -17,9 +19,16 @@ if (__DEV__) {
 }
 
 export default function configureStore (initialState) {
-  return createStore(
+  const createStoreWithNavigation = createNavigationEnabledStore({
+    createStore,
+    navigationStateKey: 'navigation',
+  });
+
+  return createStoreWithNavigation(
     rootReducer,
     initialState,
     applyMiddleware(...middleware)
-  )
+  );
 }
+
+
