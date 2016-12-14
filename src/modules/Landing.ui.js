@@ -37,11 +37,7 @@ class HomeComponent extends Component {
     })
   }
 
-  renderMainComponent = () => {
-
-    if (this.props.pin) return <LoginWithPin />
-
-    if (!this.props.pin) {
+  renderLoginWithPassword = () => {
 
       if (this.props.password) return (<Login />)
 
@@ -61,9 +57,14 @@ class HomeComponent extends Component {
           </View>
         )
       }
-      
-    }
-  
+     
+  }
+
+  renderMainComponent = () => {
+
+    if (this.props.pin) return <LoginWithPin />
+    if (!this.props.pin) return this.renderLoginWithPassword()
+
   }
 
   render () {
